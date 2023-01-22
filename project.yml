@@ -1,0 +1,7 @@
+parameters: {}
+environment: {}
+packages:
+    - name: post
+      functions:
+        - name: levering
+          runtime: python:default
