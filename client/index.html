@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leveringsdager</title>
 </head>
-<body>
-    <p>This is a blank canvas.</p>
-    <p>Someday, this will tell you when mail is delivered in your Norwegian box.</p>
+<body> 
+    <p id="information"></p>
+
+    <form id="form">
+        <p><label>Postnummer: <input type="text" name="postcode" id="postcodeField"></label></p>
+        <p><button type="submit">Hent leveringsdager</button></p>
+    </form>
+
+    <script>
+        let postcode = null;
+
+        const onPostcodeChange = () => {
+            postcode = postcodeField.value;
+        }
+
+        const onPostcodeSubmit = (event) => {
+            document.getElementById("information").textContent = `Henter neste dager for ${postcode}...`;
+            event.preventDefault();
+        }
+
+        const form = document.getElementById("form");
+        const postcodeField = document.getElementById("postcodeField");
+
+        form.addEventListener("submit", onPostcodeSubmit);
+        postcodeField.addEventListener("input", onPostcodeChange);
+    </script>
 </body>
 </html>
