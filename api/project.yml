@@ -1,7 +1,7 @@
 parameters: {}
 environment: {}
 packages:
-    - name: post
+    - name: delivery
       functions:
-        - name: levering
+        - name: fetchdays
           runtime: python:default
