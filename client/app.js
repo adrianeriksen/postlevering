@@ -30,6 +30,11 @@ const getToday = () => {
 };
 
 const fetchDeliveryDays = (postcode) => {
+  const loadingElement = document.createElement("p");
+  loadingElement.textContent = "Laster...";
+
+  appElement.replaceChildren(loadingElement);
+
   fetch(
     `https://postlevering.aer.dev/api/delivery/fetchdays?postcode=${postcode}`
   )
@@ -58,23 +63,25 @@ const getNorwegianDate = (date) => {
 
 const updateInformation = (days) => {
   const today = getToday();
-  const nextDay = days[0];
 
-  if (nextDay.getTime() == today.getTime()) {
-    document.getElementById("information").textContent = "I dag kommer posten!";
+  if (days[0].getTime() == today.getTime()) {
+    drawDeliveries(true, days[1]);
+  } else {
+    drawDeliveries(false, days[0]);
   }
-
-  const nextDaysElement = document.getElementById("nextDays");
-
-  const node = document.createElement("li");
-  node.textContent = getNorwegianDate(nextDay);
-
-  const node2 = document.createElement("li");
-  node2.textContent = getNorwegianDate(days[1]);
-
-  nextDaysElement.appendChild(node);
-  nextDaysElement.appendChild(node2);
 };
+
+const appElement = document.getElementById("app");
+
+const drawDeliveries = (isDeliveryToday, nextDate) => {
+    const deliveryElement = document.createElement("p");
+    deliveryElement.textContent = (isDeliveryToday) ? "I dag kommer posten!" : "Ingen postlevering i dag.";
+
+    const nextDateElement = document.createElement("p");
+    nextDateElement.textContent = `Neste leveringsdag er ${getNorwegianDate(nextDate)}`;
+
+    appElement.replaceChildren(deliveryElement, nextDateElement);
+}
 
 const form = document.getElementById("form");
 const postcodeField = document.getElementById("postcodeField");
