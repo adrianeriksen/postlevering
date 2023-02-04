@@ -51,7 +51,7 @@ const onPostcodeChange = () => {
 
 const onPostcodeSubmit = (event) => {
   event.preventDefault();
-  fetchDeliveryDays("2000");
+  fetchDeliveryDays(postcode);
 };
 
 const getNorwegianDate = (date) => {
