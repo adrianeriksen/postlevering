@@ -75,10 +75,11 @@ const appElement = document.getElementById("app");
 
 const drawDeliveries = (isDeliveryToday, nextDate) => {
     const deliveryElement = document.createElement("p");
-    deliveryElement.textContent = (isDeliveryToday) ? "I dag kommer posten!" : "Ingen postlevering i dag.";
+    deliveryElement.className = "hero";
+    deliveryElement.textContent = (isDeliveryToday) ? "I dag kommer posten!" : "Ingen post i dag.";
 
     const nextDateElement = document.createElement("p");
-    nextDateElement.textContent = `Neste leveringsdag er ${getNorwegianDate(nextDate)}`;
+    nextDateElement.innerHTML = `Neste leveringsdag er<br>${getNorwegianDate(nextDate)}`;
 
     appElement.replaceChildren(deliveryElement, nextDateElement);
 }
