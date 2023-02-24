@@ -12,7 +12,7 @@ def _fetch(post_code):
         raise ValueError("Post code should consist of four digits")
 
     headers = {"x-requested-with": "XMLHttpRequest"}
-    response = requests.get(f"https://www.posten.no/levering-av-post/_/component/main/1/leftRegion/1?postCode={post_code}", headers=headers)
+    response = requests.get(f"https://www.posten.no/levering-av-post/_/component/main/1/leftRegion/9?postCode={post_code}", headers=headers)
 
     return response.json()["nextDeliveryDays"]
 
